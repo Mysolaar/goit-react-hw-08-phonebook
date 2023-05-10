@@ -1,0 +1,28 @@
+.list {
+    min-width: 300px;
+    margin: 0;
+    padding-bottom: 20px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.button {
+    color: white;
+    background-color: #3d1464;
+    border: 0;
+    outline: 0;
+    border-radius: 15px;
+    cursor: pointer;
+    padding: 0px 10px;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.button:hover {
+    background-color: #fff;
+    color: #3d1464;
+}
