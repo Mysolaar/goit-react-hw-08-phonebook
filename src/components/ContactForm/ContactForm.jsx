@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
-import { addContact } from '../../redux/operations.js';
-import { selectContacts } from '../../redux/selectors.js';
-import { nanoid } from 'nanoid';
-import css from './ContactForm.module.css';
+import { addContact } from '../../redux/contacts/operations.js';
+import { selectContacts } from '../../redux/contacts/selectors.js';
+import { Box, Button } from '@mui/material';
+import TextField from '@mui/material/TextField';
 
-const ContactForm = () => {
+export const ContactForm = () => {
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -26,7 +27,7 @@ const ContactForm = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-  
+
     const isContactRepeat = contacts.find(el => el.name === name);
 
     if (isContactRepeat) {
@@ -36,7 +37,6 @@ const ContactForm = () => {
     const contact = {
       name,
       number,
-      id: nanoid(),
     };
 
     dispatch(addContact(contact));
@@ -45,10 +45,24 @@ const ContactForm = () => {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
-      <label className={css.label}>Name
-      <input
-        className={css.input}
+    <Box
+      component="form"
+      autoComplete="off"
+      onSubmit={handleSubmit}
+      sx={{
+        paddingBottom: '20px',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '10px',
+      }}
+    >
+      <TextField
+        sx={{ width: 400 }}
+        id="filled-basic"
+        label="☏ Name"
+        variant="filled"
         type="text"
         name="name"
         onChange={inputChange}
@@ -56,27 +70,41 @@ const ContactForm = () => {
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
-        />
-        </label>
+      />
 
-      <label className={css.label}>
-        Number
-        <input
-          className={css.input}
-          type="tel"
-          name="number"
-          onChange={inputChange}
-          placeholder="000-00-00"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          />
-      </label>
-      <button className={css.button} type="submit">
+      <TextField
+        sx={{ width: 400 }}
+        id="filled-basic"
+        label="☏ Phone number"
+        variant="filled"
+        type="tel"
+        name="number"
+        onChange={inputChange}
+        placeholder="000-00-00"
+        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+        required
+      />
+
+      <Button
+        sx={{
+          height: 45,
+          width: 140,
+          mt: '20px',
+          color: '#420080',
+          backgroundColor: '#e6ccff',
+          borderRadius: '25px',
+
+          '&:hover:not(.active)': {
+            color: '#e6ccff',
+            backgroundColor: '#420080',
+          },
+        }}
+        type="submit"
+        variant="contained"
+      >
         Add contact
-      </button>
-    </form>
+      </Button>
+    </Box>
   );
 };
-
-export default ContactForm;

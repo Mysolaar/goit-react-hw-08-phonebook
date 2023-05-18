@@ -6,4 +6,4 @@ The app consists of several components such as Container, ContactForm, Filter, a
 
 - Implemented function createAsyncThunk.
 
-- Used mockapi.io backend in place of local storage.
+- Used Connections API backend in place of mockapi.io backend.

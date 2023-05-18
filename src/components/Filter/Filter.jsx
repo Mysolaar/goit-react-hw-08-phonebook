@@ -1,23 +1,25 @@
-import { useDispatch } from 'react-redux';
-import { filterContact } from '../../redux/filter';
-import css from './Filter.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { filterContact } from '../../redux/contacts/filterSlice.js';
+import TextField from '@mui/material/TextField';
 
-const Filter = () => {
+export const Filter = () => {
   const dispatch = useDispatch();
+  const filterValue = useSelector(state => state.filter);
+
   return (
     <>
-        <label className={css.label}>Find contacts by name
-            <input
-                className={css.input}
-                type="text"
-                onChange={e => {
-                const action = filterContact(e.target.value);
-                dispatch(action);
-                }}
-            />
-        </label>
+      <TextField
+        sx={{ width: 400 }}
+        id="filled-basic"
+        label="☏ Search"
+        variant="filled"
+        type="text"
+        value={filterValue}
+        onChange={e => {
+          const action = filterContact(e.target.value);
+          dispatch(action);
+        }}
+      />
     </>
   );
 };
-
-export default Filter;
