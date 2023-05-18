@@ -1,9 +1,9 @@
-import { Container } from '@mui/material';
+import { Box } from '@mui/material';
 
 export default function Home() {
   return (
     <main>
-      <Container
+      <Box
         sx={{
           pt: '40px',
           textAlign: 'center',
@@ -12,8 +12,7 @@ export default function Home() {
       >
         <h1>Register or Log In to Your Phonebook
           ☏</h1>
-        <span ></span>
-      </Container>
+      </Box>
     </main>
   );
 }

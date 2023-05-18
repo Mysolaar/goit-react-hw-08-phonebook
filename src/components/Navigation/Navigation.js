@@ -38,7 +38,7 @@ export const Navigation = () => {
         <ListItem
           component={NavLink}
           sx={{
-            color: 'white',
+            color: '#420080',
             '&.active': {
               color: '#ffb3ff',
               border: '4px solid #ffb3ff',

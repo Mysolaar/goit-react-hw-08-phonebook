@@ -24,7 +24,7 @@ export const UserMenu = () => {
                     display: 'inline-Block',
                 }}
             >
-                Welcome, {user.name} ✨
+               ✨ Welcome, {user.name} ✨
             </p>
 
             <ListItem
@@ -35,7 +35,7 @@ export const UserMenu = () => {
                     width: 'auto',
 
                     '&:hover:not(.active)': {
-                        color: 'white',
+                        color: 'white'
                     },
                 }}
                 onClick={() => dispatch(logOut())}
